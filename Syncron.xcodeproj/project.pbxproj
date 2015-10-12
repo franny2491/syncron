@@ -13,6 +13,7 @@
 		A6EBB1F51BC58F5F0028D614 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6EBB1F41BC58F5F0028D614 /* Assets.xcassets */; };
 		A6EBB1F81BC58F5F0028D614 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6EBB1F61BC58F5F0028D614 /* LaunchScreen.storyboard */; };
 		A6EBB2011BC58F730028D614 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6EBB2001BC58F730028D614 /* CloudKit.framework */; };
+		A6F234A81BCB7CC800361833 /* Docs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F234A71BCB7CC800361833 /* Docs.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		A6EBB1F91BC58F5F0028D614 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6EBB1FF1BC58F6A0028D614 /* Syncron.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Syncron.entitlements; sourceTree = "<group>"; };
 		A6EBB2001BC58F730028D614 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		A6F234A71BCB7CC800361833 /* Docs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Docs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				A6EBB1FF1BC58F6A0028D614 /* Syncron.entitlements */,
 				A6EBB1ED1BC58F5F0028D614 /* AppDelegate.swift */,
 				A6EBB1EF1BC58F5F0028D614 /* ViewController.swift */,
+				A6F234A71BCB7CC800361833 /* Docs.swift */,
 				A6EBB1F11BC58F5F0028D614 /* Main.storyboard */,
 				A6EBB1F41BC58F5F0028D614 /* Assets.xcassets */,
 				A6EBB1F61BC58F5F0028D614 /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6EBB1F01BC58F5F0028D614 /* ViewController.swift in Sources */,
+				A6F234A81BCB7CC800361833 /* Docs.swift in Sources */,
 				A6EBB1EE1BC58F5F0028D614 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +309,7 @@
 				A6EBB1FE1BC58F5F0028D614 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
