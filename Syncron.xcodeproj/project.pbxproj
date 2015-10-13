@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A62A173C1BCD47E400C218BB /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A173B1BCD47E400C218BB /* FileViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		A6EBB1EE1BC58F5F0028D614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBB1ED1BC58F5F0028D614 /* AppDelegate.swift */; };
 		A6EBB1F01BC58F5F0028D614 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBB1EF1BC58F5F0028D614 /* ViewController.swift */; };
 		A6EBB1F31BC58F5F0028D614 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6EBB1F11BC58F5F0028D614 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A62A173B1BCD47E400C218BB /* FileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A6EBB1EA1BC58F5F0028D614 /* Syncron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syncron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6EBB1ED1BC58F5F0028D614 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6EBB1EF1BC58F5F0028D614 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				A6EBB1FF1BC58F6A0028D614 /* Syncron.entitlements */,
 				A6EBB1ED1BC58F5F0028D614 /* AppDelegate.swift */,
 				A6EBB1EF1BC58F5F0028D614 /* ViewController.swift */,
+				A62A173B1BCD47E400C218BB /* FileViewController.swift */,
 				A6F234A71BCB7CC800361833 /* Docs.swift */,
 				A6EBB1F11BC58F5F0028D614 /* Main.storyboard */,
 				A6EBB1F41BC58F5F0028D614 /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 			files = (
 				A6EBB1F01BC58F5F0028D614 /* ViewController.swift in Sources */,
 				A6F234A81BCB7CC800361833 /* Docs.swift in Sources */,
+				A62A173C1BCD47E400C218BB /* FileViewController.swift in Sources */,
 				A6EBB1EE1BC58F5F0028D614 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

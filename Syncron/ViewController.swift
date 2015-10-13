@@ -8,8 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet var tableView :UITableView?
     
+    var documents :NSMutableArray?
     var query :NSMetadataQuery?
     
     override func viewDidLoad() {
@@ -18,64 +20,103 @@ class ViewController: UIViewController {
         let url :NSURL? = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
         print(url)
         
-        loadDocument()
+        title = "Documents"
+        let addButton :UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "newDocument:")
+        navigationItem.rightBarButtonItem = addButton
+        
+        let refreshButton :UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "loadDocuments")
+        navigationItem.leftBarButtonItem = refreshButton
+        
+        documents = NSMutableArray()
+        loadDocuments()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadDocuments", name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    let nameOfFile :String = "myDocument.txt"
-    func loadDocument() {
-        let queryNew :NSMetadataQuery = NSMetadataQuery()
-        let array :NSArray = NSArray(objects: NSMetadataQueryUbiquitousDocumentsScope)
-        queryNew.searchScopes = array as [AnyObject]
-        
-        let predicate :NSPredicate = NSPredicate(format: "%K == %@", NSMetadataItemFSNameKey, nameOfFile)
-        queryNew.predicate = predicate
-        
-        NSNotificationCenter.defaultCenter().addObserverForName(NSMetadataQueryDidFinishGatheringNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (note) -> Void in
-
-            let query :NSMetadataQuery = note.object as! NSMetadataQuery
-            query.disableUpdates()
-            query.stopQuery()
-
-            NSNotificationCenter.defaultCenter().removeObserver(self, name:NSMetadataQueryDidFinishGatheringNotification, object: query)
+    
+    func loadDocuments() {
+        let urlUbiq :NSURL? = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
+        if urlUbiq != nil {
+            query = NSMetadataQuery()
+            query?.searchScopes = [NSMetadataQueryUbiquitousDocumentsScope]
             
-            self.loadFile(query)
-        }
-        
-        query = queryNew
-        query!.startQuery()
-    }
-
-    func loadFile(query :NSMetadataQuery) {
-        if query.resultCount == 1 {
-            let item :NSMetadataItem = query.resultAtIndex(0) as! NSMetadataItem
-            let url :NSURL = item.valueForAttribute(NSMetadataItemURLKey) as! NSURL
-            let document :Docs = Docs(fileURL: url)
-            document.openWithCompletionHandler({ (success) -> Void in
-                if success {
-                    print("Opened")
-                }
-                else {
-                    print("Failed to open")
-                }
+            let predicate :NSPredicate = NSPredicate(format: "%K like 'Document-*'", NSMetadataItemFSNameKey)
+            query?.predicate = predicate
+            
+            NSNotificationCenter.defaultCenter().addObserverForName(NSMetadataQueryDidFinishGatheringNotification, object: query, queue: NSOperationQueue.mainQueue(), usingBlock: { (note) -> Void in
+                
+                let queryLocal :NSMetadataQuery = note.object as! NSMetadataQuery
+                queryLocal.disableUpdates()
+                queryLocal.stopQuery()
+  
+                self.loadData(queryLocal)
             })
+
+            query?.startQuery()
         }
         else {
-            let url :NSURL? = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
-            let ubiquitousPackage = url?.URLByAppendingPathComponent("Documents").URLByAppendingPathComponent(nameOfFile)
+            print("Can't Access iCloud")
+        }
+    }
+    
+    func loadData(query :NSMetadataQuery) {
+        documents?.removeAllObjects()
+        
+        for item in query.results {
+            let metaItem :NSMetadataItem = item as! NSMetadataItem
+            let url :NSURL = metaItem.valueForAttribute(NSMetadataItemURLKey) as! NSURL
             
-            let document :Docs = Docs(fileURL: ubiquitousPackage!)
-            document.saveToURL(document.fileURL, forSaveOperation: UIDocumentSaveOperation.ForCreating, completionHandler: { (success) -> Void in
+            let doc :Docs = Docs(fileURL :url)
+            doc.openWithCompletionHandler({ (success) -> Void in
                 if success {
-                    document.openWithCompletionHandler({ (success) -> Void in
-                        print("new document")
-                    })
+                    if !self.documents!.containsObject(doc) {
+                        self.documents?.addObject(doc)
+                        self.tableView?.reloadData()
+                    }
                 }
             })
+        }
+    }
+
+    func newDocument(sender :UIBarButtonItem) {
+        let dateFormatter :NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyyMMddhhmmss"
+        
+        let fileName :String = String(format: "Document-%@", dateFormatter.stringFromDate(NSDate()))
+        let url :NSURL? = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)
+        let ubiquitousPackage = url?.URLByAppendingPathComponent("Documents").URLByAppendingPathComponent(fileName)
+        
+        let document :Docs = Docs(fileURL :ubiquitousPackage!)
+        document.saveToURL(document.fileURL, forSaveOperation: UIDocumentSaveOperation.ForCreating) { (success) -> Void in
+            if success {
+                self.documents?.addObject(document)
+                self.tableView?.reloadData()
+            }
+        }
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return documents!.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell :UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("defaultCell")
+        
+        let document :Docs = documents?.objectAtIndex(indexPath.row) as! Docs
+        cell!.textLabel!.text = document.fileURL.lastPathComponent
+        
+        return cell!
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "documentContentSegue" {
+            let destinationController :FileViewController = segue.destinationViewController as! FileViewController
+            let index :Int = tableView!.indexPathForSelectedRow!.row
+            destinationController.document = documents?.objectAtIndex(index) as? Docs
         }
     }
 }

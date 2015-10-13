@@ -20,6 +20,8 @@ class Docs: UIDocument {
         else {
             docContent = "Empty"
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("documentChanged", object: self)
     }
 
     override func contentsForType(typeName: String) throws -> AnyObject {
