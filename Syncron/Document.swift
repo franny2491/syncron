@@ -28,6 +28,7 @@ class Document: NSManagedObject {
     class func fetchDocumentInContext(fileName :String, context:NSManagedObjectContext) -> Document! {
         let request:NSFetchRequest = NSFetchRequest(entityName: CoreDataEntities.Document)
         request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "title == %@", fileName)
         
         let matches:Array = try! context.executeFetchRequest(request)
         if matches.first != nil {
