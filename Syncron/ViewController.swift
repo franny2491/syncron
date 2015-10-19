@@ -73,6 +73,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let doc :Docs = Docs(fileURL :url)
             doc.openWithCompletionHandler({ (success) -> Void in
                 if success {
+                    Document.createDocumentInContext(doc, context: CoreData.sharedInstance.managedObjectContext!)
+                    
                     if !self.documents!.containsObject(doc) {
                         self.documents?.addObject(doc)
                         self.tableView?.reloadData()
@@ -91,6 +93,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let ubiquitousPackage = url?.URLByAppendingPathComponent("Documents").URLByAppendingPathComponent(fileName)
         
         let document :Docs = Docs(fileURL :ubiquitousPackage!)
+        Document.createDocumentInContext(document, context: CoreData.sharedInstance.managedObjectContext!)
+        
         document.saveToURL(document.fileURL, forSaveOperation: UIDocumentSaveOperation.ForCreating) { (success) -> Void in
             if success {
                 self.documents?.addObject(document)
@@ -107,7 +111,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell :UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("defaultCell")
         
         let document :Docs = documents?.objectAtIndex(indexPath.row) as! Docs
-        cell!.textLabel!.text = document.fileURL.lastPathComponent
+        cell!.textLabel!.text = document.fileName()
         
         return cell!
     }

@@ -38,4 +38,9 @@ class Docs: UIDocument {
         
         return docContent.dataUsingEncoding(NSUTF8StringEncoding)!
     }
+    
+    func fileName() -> String {
+        let documentName :String? = fileURL.lastPathComponent
+        return documentName!
+    }
 }

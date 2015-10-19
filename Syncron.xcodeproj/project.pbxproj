@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		A62A173C1BCD47E400C218BB /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62A173B1BCD47E400C218BB /* FileViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		A63B47081BD125F000A795F3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A63B47061BD125F000A795F3 /* Model.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		A63B470A1BD1265500A795F3 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B47091BD1265500A795F3 /* CoreData.swift */; settings = {ASSET_TAGS = (); }; };
+		A63B470C1BD1266000A795F3 /* CoreDataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B470B1BD1266000A795F3 /* CoreDataConstants.swift */; settings = {ASSET_TAGS = (); }; };
+		A63B470F1BD12D6100A795F3 /* Document+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B470D1BD12D6100A795F3 /* Document+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		A63B47101BD12D6100A795F3 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63B470E1BD12D6100A795F3 /* Document.swift */; settings = {ASSET_TAGS = (); }; };
 		A6EBB1EE1BC58F5F0028D614 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBB1ED1BC58F5F0028D614 /* AppDelegate.swift */; };
 		A6EBB1F01BC58F5F0028D614 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBB1EF1BC58F5F0028D614 /* ViewController.swift */; };
 		A6EBB1F31BC58F5F0028D614 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6EBB1F11BC58F5F0028D614 /* Main.storyboard */; };
@@ -19,6 +24,11 @@
 
 /* Begin PBXFileReference section */
 		A62A173B1BCD47E400C218BB /* FileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
+		A63B47071BD125F000A795F3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		A63B47091BD1265500A795F3 /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		A63B470B1BD1266000A795F3 /* CoreDataConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataConstants.swift; sourceTree = "<group>"; };
+		A63B470D1BD12D6100A795F3 /* Document+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A63B470E1BD12D6100A795F3 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		A6EBB1EA1BC58F5F0028D614 /* Syncron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Syncron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6EBB1ED1BC58F5F0028D614 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6EBB1EF1BC58F5F0028D614 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +53,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A63B47041BD121A600A795F3 /* iCloud */ = {
+			isa = PBXGroup;
+			children = (
+				A6F234A71BCB7CC800361833 /* Docs.swift */,
+				A62A173B1BCD47E400C218BB /* FileViewController.swift */,
+			);
+			name = iCloud;
+			sourceTree = "<group>";
+		};
+		A63B47051BD125E200A795F3 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A63B470B1BD1266000A795F3 /* CoreDataConstants.swift */,
+				A63B47091BD1265500A795F3 /* CoreData.swift */,
+				A63B47061BD125F000A795F3 /* Model.xcdatamodeld */,
+				A63B470D1BD12D6100A795F3 /* Document+CoreDataProperties.swift */,
+				A63B470E1BD12D6100A795F3 /* Document.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		A6EBB1E11BC58F5F0028D614 = {
 			isa = PBXGroup;
 			children = (
@@ -66,8 +97,8 @@
 				A6EBB1FF1BC58F6A0028D614 /* Syncron.entitlements */,
 				A6EBB1ED1BC58F5F0028D614 /* AppDelegate.swift */,
 				A6EBB1EF1BC58F5F0028D614 /* ViewController.swift */,
-				A62A173B1BCD47E400C218BB /* FileViewController.swift */,
-				A6F234A71BCB7CC800361833 /* Docs.swift */,
+				A63B47051BD125E200A795F3 /* CoreData */,
+				A63B47041BD121A600A795F3 /* iCloud */,
 				A6EBB1F11BC58F5F0028D614 /* Main.storyboard */,
 				A6EBB1F41BC58F5F0028D614 /* Assets.xcassets */,
 				A6EBB1F61BC58F5F0028D614 /* LaunchScreen.storyboard */,
@@ -152,8 +183,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63B470A1BD1265500A795F3 /* CoreData.swift in Sources */,
 				A6EBB1F01BC58F5F0028D614 /* ViewController.swift in Sources */,
+				A63B470F1BD12D6100A795F3 /* Document+CoreDataProperties.swift in Sources */,
+				A63B470C1BD1266000A795F3 /* CoreDataConstants.swift in Sources */,
 				A6F234A81BCB7CC800361833 /* Docs.swift in Sources */,
+				A63B47101BD12D6100A795F3 /* Document.swift in Sources */,
+				A63B47081BD125F000A795F3 /* Model.xcdatamodeld in Sources */,
 				A62A173C1BCD47E400C218BB /* FileViewController.swift in Sources */,
 				A6EBB1EE1BC58F5F0028D614 /* AppDelegate.swift in Sources */,
 			);
@@ -316,6 +352,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A63B47061BD125F000A795F3 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A63B47071BD125F000A795F3 /* Model.xcdatamodel */,
+			);
+			currentVersion = A63B47071BD125F000A795F3 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A6EBB1E21BC58F5F0028D614 /* Project object */;
 }
